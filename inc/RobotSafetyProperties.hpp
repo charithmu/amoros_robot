@@ -4,6 +4,7 @@
 #include "ControlSystem.hpp"
 #include <eeros/hal/HAL.hpp>
 #include <eeros/safety/SafetyProperties.hpp>
+#include <eeros/sequencer/Sequencer.hpp>
 
 class RobotSafetyProperties : public eeros::safety::SafetyProperties
 {

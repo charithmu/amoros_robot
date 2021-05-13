@@ -3,14 +3,14 @@
 RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     : cs(cs),
 
-      slSystemOff("System is offline"),
+      slSystemOff("System offline"),
       slShuttingDown("System shutting down"),
       slHalting("System halting"),
       slStartingUp("System starting up"),
       slEmergency("Emergency"),
-      slEmergencyBraking("System halting"),
-      slSystemOn("System is online"),
-      slMotorPowerOn("Motors powered"),
+      slEmergencyBraking("Emergency breaking"),
+      slSystemOn("System online"),
+      slMotorPowerOn("Motors powered-on"),
       slSystemMoving("System moving"),
 
       abort("Abort"),
@@ -124,6 +124,6 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
 
     // Define exit function
     exitFunction = ([&](SafetyContext *privateContext) {
-        privateContext->triggerEvent(doSystemOff);
+        privateContext->triggerEvent(abort);
     });
 }
