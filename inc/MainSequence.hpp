@@ -1,19 +1,21 @@
 #ifndef MAINSEQUENCE_HPP_
 #define MAINSEQUENCE_HPP_
 
-#include <eeros/sequencer/Sequencer.hpp>
-#include <eeros/sequencer/Sequence.hpp>
-#include <eeros/safety/SafetySystem.hpp>
-#include "MyRobotSafetyProperties.hpp"
 #include "ControlSystem.hpp"
+#include "RobotSafetyProperties.hpp"
+#include <eeros/safety/SafetySystem.hpp>
+#include <eeros/sequencer/Sequence.hpp>
+#include <eeros/sequencer/Sequencer.hpp>
 #include <eeros/sequencer/Wait.hpp>
 
 class MainSequence : public eeros::sequencer::Sequence
 {
-public:
-    MainSequence(std::string name, eeros::sequencer::Sequencer &seq,
+  public:
+    MainSequence(std::string name,
+                 eeros::sequencer::Sequencer &seq,
                  eeros::safety::SafetySystem &ss,
-                 MyRobotSafetyProperties &sp, ControlSystem &cs)
+                 RobotSafetyProperties &sp,
+                 ControlSystem &cs)
         : eeros::sequencer::Sequence(name, seq),
           ss(ss),
           sp(sp),
@@ -34,10 +36,10 @@ public:
         return 0;
     }
 
-private:
+  private:
     eeros::safety::SafetySystem &ss;
     ControlSystem &cs;
-    MyRobotSafetyProperties &sp;
+    RobotSafetyProperties &sp;
 
     eeros::sequencer::Wait sleep;
 };

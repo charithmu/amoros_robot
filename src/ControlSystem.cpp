@@ -1,7 +1,8 @@
 #include "ControlSystem.hpp"
 
 ControlSystem::ControlSystem(double dt)
-    : myConstant(1.0), myGain(2.0),
+    : myConstant(1.0),
+      myGain(2.0),
       timedomain("Main time domain", dt, true)
 {
     // Name all blocks
