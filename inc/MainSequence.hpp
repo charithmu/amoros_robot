@@ -33,9 +33,10 @@ class MainSequence : public eeros::sequencer::Sequence
             sleep(1.0);
             log.info() << cs.E2.getOut().getSignal();
             log.info() << cs.scale1.getOut().getSignal();
-            log.info() << cs.qdMax1.getOut().getSignal();
-            log.info() << cs.i1.getOut().getSignal();
-            log.info() << cs.kM1.getOut().getSignal();
+            log.info() << cs.QMax1.getOut().getSignal();
+            log.info() << cs.i1_inv.getOut().getSignal();
+            log.info() << cs.kM1_inv.getOut().getSignal();
+            log.info() << cs.R1.getOut().getSignal();
         }
         return 0;
     }
