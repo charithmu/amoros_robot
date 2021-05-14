@@ -116,7 +116,7 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     });
 
     slSystemMoving.setLevelAction([&](SafetyContext *privateContext) {
-        privateContext->triggerEvent(emergency);
+
     });
 
     // Define entry level

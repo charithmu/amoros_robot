@@ -3,6 +3,9 @@
 
 #include <eeros/control/Constant.hpp>
 #include <eeros/control/Gain.hpp>
+#include <eeros/control/PeripheralInput.hpp>
+#include <eeros/control/PeripheralOutput.hpp>
+#include <eeros/control/Saturation.hpp>
 #include <eeros/control/TimeDomain.hpp>
 #include <eeros/core/Executor.hpp>
 
@@ -14,8 +17,10 @@ class ControlSystem
     ControlSystem(double dt);
 
     // Define Blocks
-    Constant<> myConstant;
-    Gain<> myGain;
+    PeripheralInput<> E1, E2;
+    PeripheralOutput<> M1;
+    Gain<> scale1, i1, kM1;
+    Saturation<> qdMax1;
 
     TimeDomain timedomain;
 };
