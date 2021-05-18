@@ -98,6 +98,13 @@
             "maxIn": 1.0,
             "minOut": -8.2,
             "maxOut": 8.2
+          },
+          {
+            "id": "inv",
+            "minIn": -1.0,
+            "maxIn": 1.0,
+            "minOut": 1.0,
+            "maxOut": 1.0
           }
         ],
         "range": [
@@ -107,6 +114,13 @@
             "maxIn": 1.0,
             "minOut": -8.2,
             "maxOut": 8.2
+          },
+          {
+            "id": "inv",
+            "minIn": -1.0,
+            "maxIn": 1.0,
+            "minOut": 1.0,
+            "maxOut": 1.0
           }
         ],
         "unit": "V"

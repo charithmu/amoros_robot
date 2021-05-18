@@ -79,15 +79,15 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     slSystemMoving.setInputActions({ignore(readybutton)});
 
     // Define output actions for all levels
-    slSystemOff.setInputActions({set(redLED, true), set(greenLED, false)});
-    slShuttingDown.setInputActions({set(redLED, true), set(greenLED, false)});
-    slHalting.setInputActions({set(redLED, true), set(greenLED, false)});
-    slStartingUp.setInputActions({set(redLED, true), set(greenLED, false)});
-    slEmergency.setInputActions({set(redLED, true), set(greenLED, false)});
-    slEmergencyBraking.setInputActions({set(redLED, true), set(greenLED, false)});
-    slSystemOn.setInputActions({set(redLED, true), set(greenLED, true)});
-    slMotorPowerOn.setInputActions({set(redLED, false), set(greenLED, true)});
-    slSystemMoving.setInputActions({set(redLED, false), set(greenLED, true)});
+    slSystemOff.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slShuttingDown.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slHalting.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slStartingUp.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slEmergency.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slEmergencyBraking.setOutputActions({set(redLED, true), set(greenLED, false)});
+    slSystemOn.setOutputActions({set(redLED, true), set(greenLED, true)});
+    slMotorPowerOn.setOutputActions({set(redLED, false), set(greenLED, true)});
+    slSystemMoving.setOutputActions({set(redLED, false), set(greenLED, true)});
 
     // Define and add level actions
     slSystemOff.setLevelAction([&](SafetyContext *privateContext) {
