@@ -37,10 +37,11 @@ class RobotSafetyProperties : public eeros::safety::SafetyProperties
 
   private:
     // Define all critical outputs
-    // eeros::hal::Output<bool>* ...;
+    eeros::hal::Output<bool> *redLED;
+    eeros::hal::Output<bool> *greenLED;
 
     // Define all critical inputs
-    // eeros::hal::Input<bool>* ...;
+    eeros::hal::Input<bool> *readybutton;
 
     ControlSystem &cs;
 };

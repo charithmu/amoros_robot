@@ -28,14 +28,15 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     eeros::hal::HAL &hal = eeros::hal::HAL::instance();
 
     // Declare and add critical outputs
-    // ... = hal.getLogicOutput("...");
+    redLED = hal.getLogicOutput("onBoardLEDred");
+    greenLED = hal.getLogicOutput("onBoardLEDgreen");
 
-    // criticalOutputs = { ... };
+    criticalOutputs = {redLED, greenLED};
 
     // Declare and add critical inputs
-    // ... = eeros::hal::HAL::instance().getLogicInput("...", ...);
+    readybutton = eeros::hal::HAL::instance().getLogicInput("onBoardButtonPause", true);
 
-    // criticalInputs = { ... };
+    criticalInputs = {readybutton};
 
     // Add all safety levels to the safety system
     addLevel(slSystemOff);
@@ -67,10 +68,26 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     addEventToAllLevelsBetween(slSystemOn, slMotorPowerOn, emergency, slEmergency, kPublicEvent);
 
     // Define input actions for all levels
-    // level.setInputActions({ ... });
+    slSystemOff.setInputActions({ignore(readybutton)});
+    slShuttingDown.setInputActions({ignore(readybutton)});
+    slHalting.setInputActions({ignore(readybutton)});
+    slStartingUp.setInputActions({ignore(readybutton)});
+    slEmergency.setInputActions({ignore(readybutton)});
+    slEmergencyBraking.setInputActions({ignore(readybutton)});
+    slSystemOn.setInputActions({check(readybutton, false, powerOn)});
+    slMotorPowerOn.setInputActions({ignore(readybutton)});
+    slSystemMoving.setInputActions({ignore(readybutton)});
 
     // Define output actions for all levels
-    // level.setOutputActions({ ... });
+    slSystemOff.setInputActions({set(redLED, true), set(greenLED, false)});
+    slShuttingDown.setInputActions({set(redLED, true), set(greenLED, false)});
+    slHalting.setInputActions({set(redLED, true), set(greenLED, false)});
+    slStartingUp.setInputActions({set(redLED, true), set(greenLED, false)});
+    slEmergency.setInputActions({set(redLED, true), set(greenLED, false)});
+    slEmergencyBraking.setInputActions({set(redLED, true), set(greenLED, false)});
+    slSystemOn.setInputActions({set(redLED, true), set(greenLED, true)});
+    slMotorPowerOn.setInputActions({set(redLED, false), set(greenLED, true)});
+    slSystemMoving.setInputActions({set(redLED, false), set(greenLED, true)});
 
     // Define and add level actions
     slSystemOff.setLevelAction([&](SafetyContext *privateContext) {
@@ -112,11 +129,13 @@ RobotSafetyProperties::RobotSafetyProperties(ControlSystem &cs, double dt)
     });
 
     slMotorPowerOn.setLevelAction([&](SafetyContext *privateContext) {
+        // check if motors are moving
         privateContext->triggerEvent(startMoving);
     });
 
     slSystemMoving.setLevelAction([&](SafetyContext *privateContext) {
-        privateContext->triggerEvent(emergency);
+        // check if motors are standing still -> slMortorsPowerOn
+        // privateContext->triggerEvent(emergency);
     });
 
     // Define entry level
