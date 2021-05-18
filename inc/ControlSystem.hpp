@@ -3,6 +3,8 @@
 
 #include <eeros/control/Constant.hpp>
 #include <eeros/control/Gain.hpp>
+#include <eeros/control/PeripheralInput.hpp>
+#include <eeros/control/PeripheralOutput.hpp>
 #include <eeros/control/TimeDomain.hpp>
 #include <eeros/core/Executor.hpp>
 
@@ -15,7 +17,6 @@ class ControlSystem
 
     // Define Blocks
     Constant<> myConstant;
-    Gain<> myGain;
 
     TimeDomain timedomain;
 };
