@@ -17,6 +17,7 @@ class ControlSystem
 
     // Define Blocks
     Constant<> myConstant;
+    Gain<> myGain;
 
     TimeDomain timedomain;
 };
