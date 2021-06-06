@@ -1,7 +1,6 @@
 #ifndef CONTROLSYSTEM_HPP_
 #define CONTROLSYSTEM_HPP_
 
-#include "customBlocks/PDController.hpp"
 #include <eeros/control/Constant.hpp>
 #include <eeros/control/Gain.hpp>
 #include <eeros/control/PeripheralInput.hpp>
@@ -20,8 +19,8 @@ class ControlSystem
     // Define Blocks
     PeripheralInput<> E1, E2;
     PeripheralOutput<> M1;
-    PDController<> controller;
-    Gain<> i1_inv, kM1_inv, R1;
+
+    Gain<> scale1, i1_inv, kM1_inv, R1;
     Saturation<> QMax1;
 
     TimeDomain timedomain;
