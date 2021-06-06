@@ -31,11 +31,11 @@ class MainSequence : public eeros::sequencer::Sequence
         while (eeros::sequencer::Sequencer::running)
         {
             sleep(1.0);
-            log.info() << cs.E2.getOut().getSignal();
-            log.info() << cs.scale1.getOut().getSignal();
-            log.info() << cs.qdMax1.getOut().getSignal();
-            log.info() << cs.i1.getOut().getSignal();
-            log.info() << cs.kM1.getOut().getSignal();
+            log.info() << cs.E2.getOut().getSignal() << "\n"
+                       << cs.scale1.getOut().getSignal() << "\n"
+                       << cs.qdMax1.getOut().getSignal() << "\n"
+                       << cs.i1.getOut().getSignal() << "\n"
+                       << cs.kM1.getOut().getSignal();
         }
         return 0;
     }
